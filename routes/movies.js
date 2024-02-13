@@ -33,7 +33,6 @@ router.post(
         .pattern(
           /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
         ),
-      owner: Joi.required(),
       movieId: Joi.number().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
@@ -44,10 +43,10 @@ router.post(
 
 // удаляет сохранённый фильм по id
 router.delete(
-  '/movies/_id',
+  '/movies/:movieId',
   celebrate({
     params: Joi.object().keys({
-      _id: Joi.string().length(24).hex().required(),
+      movieId: Joi.string().length(24).hex().required(),
     }),
   }),
   deleteMovie,

@@ -92,13 +92,13 @@ const deleteMovie = (req, res, next) => {
       }
 
       return Movie.findByIdAndDelete(movieId).then(() => {
-        res.send({ message: 'Карточка удалена!' });
+        res.send({ message: 'Фильм удален!' });
       });
     })
     .catch((err) => {
       switch (err.name) {
         case 'CastError':
-          return next(new BadRequestError('Карточка не найдена'));
+          return next(new BadRequestError('Фильм не найден'));
         case 'NotFoundError':
           return next(new NotFoundError(err.message));
         case 'ForbiddenError':
