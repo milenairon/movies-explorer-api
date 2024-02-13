@@ -7,10 +7,11 @@ const { celebrate, Joi, errors } = require('celebrate');
 // Безопасность
 const helmet = require('helmet');
 const cors = require('cors');
-// const limiter = require('./middlewares/rateLimiter');
+const mongoose = require('mongoose');
+const limiter = require('./middlewares/rateLimiter');
+
 const app = express();
 const { PORT = 3003 } = process.env;
-const mongoose = require('mongoose');
 const { DB_ADDRESS } = require('./config');
 
 const auth = require('./middlewares/auth');
@@ -25,7 +26,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000', // фронтенд локальный
-      'https://milenairon.nomoredomainsmonster.ru', // фронтенд сервер
+      'https://milenadiploma.nomoredomainsmonster.ru', // фронтенд сервер
     ],
     credentials: true,
     maxAge: 30,
@@ -33,7 +34,7 @@ app.use(
 );
 app.use(helmet());
 app.use(cookieParser());
-// app.use(limiter);
+app.use(limiter);
 
 // Подключаемся к серверу Mongo
 mongoose.connect(DB_ADDRESS);
