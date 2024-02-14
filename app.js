@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 const limiter = require('./middlewares/rateLimiter');
 
 const app = express();
-const { PORT = 3003 } = process.env;
+const { PORT = 3005 } = process.env;
 const { DB_ADDRESS } = require('./config');
 
 const auth = require('./middlewares/auth');
