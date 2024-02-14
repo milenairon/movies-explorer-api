@@ -53,7 +53,7 @@ const patchCurrentUser = (req, res, next) => {
       } else if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
       } else if (err.name === 'NotFoundError') {
-        next(new NotFoundError(err.message)); // НУЖЕН ЛИ ОН ТУТ?????????????????????
+        next(new NotFoundError(err.message));
       } else {
         next(err);
       }
@@ -81,7 +81,7 @@ const login = (req, res, next) => {
 const createUser = async (req, res, next) => {
   // получим из объекта запроса данные пользователя
   try {
-    const { name, email, password } = req.body || {}; // ТОЧНО ЛИ НАДО ОСТАВЛЯТЬ МАССИВ ПУСТЫМ??
+    const { name, email, password } = req.body || {};
     const hash = await bcrypt.hash(password, SOLT_ROUND);
     const newUser = await User.create({
       name,
