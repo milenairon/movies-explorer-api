@@ -25,10 +25,11 @@ const handleErrors = require('./middlewares/handleErrors'); // 500
 app.use(
   cors({
     origin: [
-      'http://localhost:3003', // фронтенд локальный
+      'http://localhost:3000', // фронтенд локальный
       'http://localhost:3005',
-      'https://milenadiploma.nomoredomainsmonster.ru', // фронтенд сервер
-      'http://milenadiploma.nomoredomainsmonster.ru', // фронтенд сервер
+      'https://api.milenadiploma.nomoredomainswork.ru', // фронтенд сервер
+      'https://milenadiploma.nomoredomainswork.ru', // фронтенд сервер
+      'https://api.nomoreparties.co/beatfilm-movies',
     ],
     credentials: true,
     maxAge: 30,
