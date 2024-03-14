@@ -80,9 +80,9 @@ const postMovie = (req, res, next) => {
 
 // удаляет сохранённый фильм по id
 const deleteMovie = (req, res, next) => {
-  const { movieId } = req.params;
+  const { id } = req.params; // movieId
   const userId = req.user._id;
-  Movie.findById(movieId)
+  Movie.findOne({ movieId: id }) // .findById(movieId)
     .then((movie) => {
       if (!movie) {
         throw new NotFoundError('Фильм не найден');
@@ -91,7 +91,7 @@ const deleteMovie = (req, res, next) => {
         throw new ForbiddenError('Попытка удалить чужой фильм');
       }
 
-      return Movie.findByIdAndDelete(movieId).then(() => {
+      return Movie.findOneAndDelete({ movieId: id }).then(() => {
         res.send({ message: 'Фильм удален!' });
       });
     })
