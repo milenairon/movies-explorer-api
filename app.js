@@ -8,7 +8,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
-// const limiter = require('./middlewares/rateLimiter');
+const limiter = require('./middlewares/rateLimiter');
 
 const app = express();
 const { PORT = 3005 } = process.env;
@@ -37,7 +37,7 @@ app.use(
 );
 app.use(helmet());
 app.use(cookieParser());
-// app.use(limiter);
+app.use(limiter);
 
 // Подключаемся к серверу Mongo
 mongoose.connect(DB_ADDRESS);
